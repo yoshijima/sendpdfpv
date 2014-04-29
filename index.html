@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>PDFクリックをUAにプロットする方法</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/uatracking.js"></script>
+<!-- Google Tag Manager -->
+<!-- GTM-xxxxxx は任意 -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-xxxxxx"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-xxxxxx');</script>
+<!-- End Google Tag Manager -->
+</head>
+<body>
+<h1>クリックでリンク先のルート相対パスをUAの仮想ページビューとしてsendする</h1>
+
+<h2>1. 設定</h2>
+<ol>
+<li>GoogleTagManagerを実装する:GTM-xxxxxxを任意のIDに変更して</li>
+<li>テスト環境の構築:"abspath"ディレクトリをDocumentRoot直下とかに置いて</li>
+<li>対象となるPDFリンクの&lt;a&gt;タグにclass="gaPv"をセットする</li>
+</ol>
+
+<h2>2. テスト：JavaScriptでルート相対パスを取得する</h2>
+<pre>
+ga('send', 'pageview', {'page':ルート相対パス});
+</pre>
+<p>で、PDFのクリックをUAにプロットさせることができるので、「ルート相対パス」をJavaScriptでどうやって取得するか<br />
+以下のsample1.pdfのリンクは、&lt;a&gt;タグにclass="gaPv"を設定してます。</p>
+<pre>
+&lt;a href="sample1.pdf" target="_blank" class="gaPv"&gt;sample1.pdf&lt;/a&gt;
+</pre>
+<p><a href="sample1.pdf" target="_blank" class="gaPv">sample1.pdf</a></p>
+<p>コンソールログを起ちあげて、上記のリンクをクリックすると、取得したルート相対パスが下記のように表示されます。</p>
+<pre>
+'/absolute/sample1.pdf'
+</pre>
+<p>で、GTMのIDがちゃんと入って実装されてれば、UAにもPDFクリックがカウントされるでしょう。</p>
+<h2>3. 相対パス(下階層)のPDFリンク</h2>
+<p><a href="../abspath/sampledir/sample2.pdf" target="_blank" class="gaPv">sample2.pdf</a></p>
+</body>
+</html>
