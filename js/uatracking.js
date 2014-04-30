@@ -34,9 +34,15 @@ function getAbsolutePath(path)
      "https://"で8文字
      なので、9文字目以降からの「/」を指定すれば問題ない。
      locationオブジェクトを利用してlocation.pathnameも試みたけど、ちょっと手に負えなかった。 */
-
+  /*
   var trimStart = absURL.indexOf('/', 9)
   var absPATH = absURL.substring(trimStart, lenURL);
   var fix = "'" + absPATH + "'";
+  */
+
+  var elm = document.createElement('a');
+  elm.href = absURL;
+  fix = elm.pathname;
+  
   return fix;
 }
