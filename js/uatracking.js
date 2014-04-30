@@ -1,13 +1,13 @@
 /* uatracking.js
 gaPvクラスをクリックすると、絶対パスを表示する
 <a href="../../products/hoge/hoge_te.pdf" target="_blank" class="gaPv">hoge</a>
-
 */
 
 $(document).ready(function() {
   $('.gaPv').click(function() {
     var getURL = $(this).attr("href");
     var absPATH = getAbsolutePath(getURL);
+    /* debug */
     console.log(absPATH);
     ga('send', 'pageview', {'page':absPATH});
   });
