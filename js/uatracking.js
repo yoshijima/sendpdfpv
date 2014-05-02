@@ -9,8 +9,8 @@ $(document).ready(function() {
     var absPATH = getAbsolutePath(getURL);
     var rRltvPATH = getRootRelativePath(absPATH);
 
-    var fix = "'" + rRltvPATH + "'";
-     console.log(fix); 
+    var fix = rRltvPATH; /* 必要があれば、送信する文字列の処理をしてfixにいれる */
+    console.log(fix); 
     ga('send', 'pageview', {'page':fix});
   });
 });
